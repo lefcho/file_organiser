@@ -149,10 +149,10 @@ class FileOrganizerGUI:
             target_dir = Path(self.selected_dir) / folder
             target_dir.mkdir(exist_ok=True)
             for filename in files:
-                soure = Path(self.selected_dir) / filename
+                source = Path(self.selected_dir) / filename
                 destination = target_dir / filename
                 try:
-                    soure.rename(destination)
+                    source.rename(destination)
                 except Exception as e:
                     messagebox.showerror("Error", f"Failed to move {filename}: {e}")
         messagebox.showinfo("Done", "Files have been organized.")
