@@ -33,7 +33,7 @@ class FileOrganizerGUI:
         self.root = tk.Tk()
         self.root.title("File Organizer")
         self.selected_dir = None
-        self.mapping_rows = []  # List of frames for mapping entries
+        self.mapping_rows = []
         self._build_gui()
 
     def _build_gui(self):
@@ -149,16 +149,17 @@ class FileOrganizerGUI:
             target_dir = Path(self.selected_dir) / folder
             target_dir.mkdir(exist_ok=True)
             for filename in files:
-                src = Path(self.selected_dir) / filename
-                dst = target_dir / filename
+                soure = Path(self.selected_dir) / filename
+                destination = target_dir / filename
                 try:
-                    src.rename(dst)
+                    soure.rename(destination)
                 except Exception as e:
                     messagebox.showerror("Error", f"Failed to move {filename}: {e}")
         messagebox.showinfo("Done", "Files have been organized.")
 
     def run(self):
         self.root.mainloop()
+
 
 if __name__ == "__main__":
     app = FileOrganizerGUI()
