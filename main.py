@@ -128,7 +128,7 @@ class FileOrganizerGUI:
         # Clear previous treeview items
         for item in self.tree.get_children():
             self.tree.delete(item)
-        # Insert new results
+
         for folder, files in result.items():
             parent_id = self.tree.insert("", tk.END, text=folder)
             for filename in files:
