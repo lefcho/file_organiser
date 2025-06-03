@@ -9,7 +9,6 @@ class FileCategorizer:
         """
         ext_map: dict mapping extensions (e.g. 'txt') to folder names (e.g. 'TextFiles').
         """
-        # Normalize keys: remove leading dot and use lower case
         self.ext_map = {k.lower().lstrip('.'): v for k, v in ext_map.items()}
 
     def categorize(self, directory):
@@ -37,6 +36,7 @@ class FileOrganizerGUI:
         self._build_gui()
 
     def _build_gui(self):
+
         # Frame for folder selection
         frame_dir = tk.Frame(self.root)
         frame_dir.pack(padx=10, pady=5, fill='x')
@@ -52,9 +52,11 @@ class FileOrganizerGUI:
         tk.Label(frame_map, text="Target Folder").grid(row=0, column=1, padx=5, pady=2, sticky='w')
         self.map_frame = tk.Frame(frame_map)
         self.map_frame.grid(row=1, column=0, columnspan=2, sticky='nsew')
-        # Add initial mapping row
+
+        # Add an initial mapping row
         self.add_mapping_row()
 
+        # Add mapping button
         btn_add = tk.Button(frame_map, text="Add Mapping", command=self.add_mapping_row)
         btn_add.grid(row=2, column=0, columnspan=2, pady=5)
 
@@ -96,7 +98,6 @@ class FileOrganizerGUI:
 
     def remove_mapping_row(self, row_frame):
         """Remove a mapping row."""
-        # Find and destroy the row frame
         for i, (frame, ext, folder) in enumerate(self.mapping_rows):
             if frame == row_frame:
                 frame.destroy()
